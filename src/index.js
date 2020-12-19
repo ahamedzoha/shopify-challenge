@@ -1,14 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "../src/redux/store";
+import { SWRConfig } from "swr";
+import axios from "axios";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    // <React.StrictMode>
+    <Provider store={store}>
+        <SWRConfig
+            value={{
+                revalidateOnFocus: false,
+                fetcher: (url) => axios(url).then((res) => res.data),
+            }}
+        >
+            <App />
+        </SWRConfig>
+    </Provider>,
+    // </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
