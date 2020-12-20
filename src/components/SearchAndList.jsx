@@ -1,37 +1,73 @@
 import React, { useState } from "react";
 import "./styles/SearchAndList.scss";
+import useSWR from "swr";
+
 import { ReactComponent as SearchIcon } from "../assets/icons/search.svg";
 
 const SearchAndList = () => {
-    const [searchString, setSearchString] = useState("");
-    const [isFocused, setFocus] = useState(false);
-    return (
-        <div className="search-list-container">
-            <div className="header">
-                <h3>Search Movie by Title</h3>
-                <div className={`input-wrapper ${isFocused ? `border` : ``}`}>
-                    <SearchIcon
-                        fill={isFocused ? `#000` : `grey`}
-                        width="61px"
-                    />
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        onFocus={() => setFocus(true)}
-                        onBlur={() => setFocus(false)}
-                        onChange={(e) => setSearchString(e.target.value)}
-                        placeholder={
-                            isFocused ? `` : `e.g. ShawShank Redemption`
-                        }
-                    />
-                </div>
-            </div>
-            <pre>
-                {searchString} {isFocused}
-            </pre>
+  const [searchString, setSearchString] = useState("");
+  const [isFocused, setFocus] = useState(false);
+
+  const url = `http://www.omdbapi.com/?apikey=1afda4a3&s=${searchString}&type=movie`;
+  const { data, error } = useSWR(url);
+
+  return (
+    <div className="search-list-container">
+      <div className="header">
+        <h2>Search Movie by Title</h2>
+        <div className={`input-wrapper ${isFocused ? `border` : ``}`}>
+          <SearchIcon fill={isFocused ? `#000` : `grey`} width="1.6em" />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            onChange={(e) => setSearchString(e.target.value)}
+            placeholder={isFocused ? `` : `e.g. ShawShank Redemption`}
+          />
         </div>
-    );
+      </div>
+      <div className="results-container">
+        {searchString.length === 0 && (
+          <h3 className="warning">Start by Searching with a Movie Title</h3>
+        )}
+
+        {data && data["Error"] === "Too many results." && (
+          <h3 className="warning">A bit more specific please...</h3>
+        )}
+
+        {data && data["Error"] === "Movie not found!" && (
+          <h3 className="warning">Movie not found</h3>
+        )}
+
+        {!data ? (
+          <h3 className="warning">Loading...</h3>
+        ) : !data["Error"] && data["Search"] ? (
+          data["Search"].map((movie) => (
+            <Movie key={movie.imdbID} movie={movie} />
+          ))
+        ) : null}
+
+        {/* {error } */}
+      </div>
+    </div>
+  );
 };
+
+const Movie = ({ movie }) => (
+  <div className="movie">
+    <img
+      src={
+        movie.Poster !== "N/A"
+          ? movie.Poster
+          : "https://via.placeholder.com/150x225?text=Image+Unavailable"
+      }
+      alt={movie.Title}
+    />
+    <span>{movie.Title}</span>
+    <button>Nominate +</button>
+  </div>
+);
 
 export default SearchAndList;
