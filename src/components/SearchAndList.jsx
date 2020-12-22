@@ -3,6 +3,7 @@ import "./styles/SearchAndList.scss";
 import useSWR from "swr";
 
 import { ReactComponent as SearchIcon } from "../assets/icons/search.svg";
+import Movie from "./Movie";
 
 const SearchAndList = () => {
   const [searchString, setSearchString] = useState("");
@@ -14,7 +15,10 @@ const SearchAndList = () => {
   return (
     <div className="search-list-container">
       <div className="header">
-        <h2>Search Movie by Title</h2>
+        <div className="text-block">
+          <h2>Nominify</h2>
+          <p>Nominate your favorite movies!</p>
+        </div>
         <div className={`input-wrapper ${isFocused ? `border` : ``}`}>
           <SearchIcon fill={isFocused ? `#000` : `grey`} width="1.6em" />
           <input
@@ -48,26 +52,9 @@ const SearchAndList = () => {
             <Movie key={movie.imdbID} movie={movie} />
           ))
         ) : null}
-
-        {/* {error } */}
       </div>
     </div>
   );
 };
-
-const Movie = ({ movie }) => (
-  <div className="movie">
-    <img
-      src={
-        movie.Poster !== "N/A"
-          ? movie.Poster
-          : "https://via.placeholder.com/150x225?text=Image+Unavailable"
-      }
-      alt={movie.Title}
-    />
-    <span>{movie.Title}</span>
-    <button>Nominate +</button>
-  </div>
-);
 
 export default SearchAndList;

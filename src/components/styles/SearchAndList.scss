@@ -16,8 +16,13 @@
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
-    h2 {
-      font-size: 2.2em;
+    .text-block {
+      h2 {
+        font-size: 2.2em;
+        margin: 5px 0px;
+      }
+      p {
+      }
     }
 
     .input-wrapper {
@@ -62,43 +67,6 @@
   .results-container {
     display: flex;
     flex-wrap: wrap;
-
-    .movie {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      padding: 2%;
-      img {
-        max-width: 200px;
-        max-height: 300px;
-      }
-      span {
-        width: 200px;
-        height: 100px;
-        margin-top: 10px;
-      }
-      button {
-        margin-top: -35px;
-        color: #3ca1dd;
-        font-size: 1em;
-        font-weight: bold;
-        border: 2px solid #3ca1dd;
-        border-radius: 4px;
-        background-color: white;
-        padding: 11px 5px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #3ca1dd;
-          color: #fff;
-          transition: 150ms;
-          -webkit-box-shadow: 2px 8px 83px -38px rgba(0, 0, 0, 1);
-          -moz-box-shadow: 2px 8px 83px -38px rgba(0, 0, 0, 1);
-          box-shadow: 2px 8px 83px -38px rgba(0, 0, 0, 1);
-        }
-      }
-    }
 
     .warning {
       transition: 1000ms;
