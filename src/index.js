@@ -9,19 +9,20 @@ import { SWRConfig } from "swr";
 import axios from "axios";
 
 ReactDOM.render(
-    // <React.StrictMode>
-    <Provider store={store}>
-        <SWRConfig
-            value={{
-                revalidateOnFocus: false,
-                fetcher: (url) => axios(url).then((res) => res.data),
-            }}
-        >
-            <App />
-        </SWRConfig>
-    </Provider>,
-    // </React.StrictMode>,
-    document.getElementById("root")
+  // <React.StrictMode>
+  <Provider store={store}>
+    <SWRConfig
+      value={{
+        revalidateOnFocus: false,
+        shouldRetryOnError: false,
+        fetcher: (url) => axios(url).then((res) => res.data),
+      }}
+    >
+      <App />
+    </SWRConfig>
+  </Provider>,
+  // </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
