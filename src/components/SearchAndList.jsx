@@ -10,7 +10,7 @@ const SearchAndList = () => {
   const [isFocused, setFocus] = useState(false);
 
   const url = `http://www.omdbapi.com/?apikey=1afda4a3&s=${searchString}&type=movie`;
-  const { data, error } = useSWR(url);
+  const { data } = useSWR(url);
 
   return (
     <div className="search-list-container">
