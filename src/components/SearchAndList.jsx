@@ -9,7 +9,7 @@ const SearchAndList = () => {
   const [searchString, setSearchString] = useState("");
   const [isFocused, setFocus] = useState(false);
 
-  const url = `http://www.omdbapi.com/?apikey=1afda4a3&s=${searchString}&type=movie`;
+  const url = `https://www.omdbapi.com/?apikey=1afda4a3&s=${searchString}&type=movie`;
   const { data } = useSWR(url);
 
   return (
