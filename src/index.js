@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "../src/redux/store";
+import store, { persistor } from "../src/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 import { SWRConfig } from "swr";
 import axios from "axios";
 import NotificationProvider from "./components/NotificationProvider";
@@ -20,7 +21,9 @@ ReactDOM.render(
           fetcher: (url) => axios(url).then((res) => res.data),
         }}
       >
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </SWRConfig>
     </NotificationProvider>
   </Provider>,
