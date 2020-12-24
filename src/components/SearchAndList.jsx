@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import "./styles/SearchAndList.scss";
 import useSWR from "swr";
 
 import { ReactComponent as SearchIcon } from "../assets/icons/search.svg";
 import Movie from "./Movie";
 
-const SearchAndList = () => {
+const SearchAndList = ({ nominees }) => {
   const [searchString, setSearchString] = useState("");
   const [isFocused, setFocus] = useState(false);
 
@@ -17,7 +18,13 @@ const SearchAndList = () => {
       <div className="header">
         <div className="text-block">
           <h2>Nominify 🍿</h2>
-          <p>Nominate 5 of your favorite movies!</p>
+          <p>
+            Nominate 5 of your favorite movies!
+            {nominees.length === 5
+              ? `
+✅`
+              : ``}
+          </p>
         </div>
         <div className={`input-wrapper ${isFocused ? `border` : ``}`}>
           <SearchIcon fill={isFocused ? `#000` : `grey`} width="1.6em" />
@@ -57,4 +64,8 @@ const SearchAndList = () => {
   );
 };
 
-export default SearchAndList;
+const mapStateToProps = (state) => ({
+  nominees: state.nominations.nominees,
+});
+
+export default connect(mapStateToProps)(SearchAndList);
