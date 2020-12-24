@@ -1,5 +1,6 @@
+@import "../../utils/GlobalBreakpoints.scss";
+
 .nominations-container {
-  max-width: 1280px;
   margin: 2% auto;
   padding: 1.6%;
   background-color: #fff;
@@ -8,16 +9,41 @@
   -webkit-box-shadow: 2px -4px 60px -31px rgba(0, 0, 0, 0.79);
   -moz-box-shadow: 2px -4px 60px -31px rgba(0, 0, 0, 0.79);
   box-shadow: 2px -4px 60px -31px rgba(0, 0, 0, 0.79);
+  max-width: 1280px;
+
+  @include media("<=laptop") {
+    max-width: 1024px;
+  }
+  @include media("<=tablet") {
+    max-width: 690px;
+  }
+  @include media("<=lg-phone") {
+    max-width: 390px;
+  }
+  @include media("<=sm-phone") {
+    max-width: 290px;
+  }
+
   &.hide {
     display: none;
   }
-  // .header {
-  //   .text-block {
-  //   }
-  // }
+  .header {
+    padding: 20px;
+    // .text-block {
+    // }
+  }
   .results-container {
     display: flex;
     flex-wrap: wrap;
+    height: auto;
+
+    @include media("<=laptop") {
+      max-height: 500px;
+      overflow-y: scroll;
+    }
+    @include media("<=tablet") {
+      padding: 20px;
+    }
 
     .warning {
       transition: 1000ms;

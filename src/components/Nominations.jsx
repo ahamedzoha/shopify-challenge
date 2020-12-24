@@ -12,7 +12,7 @@ const Nominations = ({ nominees }) => {
     >
       <div className="header">
         <div className="text-block">
-          <h2>Your Nominations</h2>
+          <h2>Your Nominations 🏆</h2>
         </div>
       </div>
       <div className="results-container">

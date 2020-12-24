@@ -7,19 +7,22 @@ import { Provider } from "react-redux";
 import store from "../src/redux/store";
 import { SWRConfig } from "swr";
 import axios from "axios";
+import NotificationProvider from "./components/NotificationProvider";
 
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <SWRConfig
-      value={{
-        revalidateOnFocus: false,
-        shouldRetryOnError: false,
-        fetcher: (url) => axios(url).then((res) => res.data),
-      }}
-    >
-      <App />
-    </SWRConfig>
+    <NotificationProvider>
+      <SWRConfig
+        value={{
+          revalidateOnFocus: false,
+          shouldRetryOnError: false,
+          fetcher: (url) => axios(url).then((res) => res.data),
+        }}
+      >
+        <App />
+      </SWRConfig>
+    </NotificationProvider>
   </Provider>,
   // </React.StrictMode>,
   document.getElementById("root")

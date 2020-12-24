@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./styles/Movie.scss";
 
 import { addNominee, removeNominee } from "../redux/actions/nominationActions";
+import { useNotification } from "./NotificationProvider";
 
 const Movie = ({ movie, addNominee, nominees, removeNominee }) => {
   const isNominated = () => {
@@ -10,6 +11,8 @@ const Movie = ({ movie, addNominee, nominees, removeNominee }) => {
     if (find === undefined) return false;
     else return true;
   };
+
+  const dispatchNotification = useNotification();
 
   return (
     <div className="movie">
@@ -28,6 +31,10 @@ const Movie = ({ movie, addNominee, nominees, removeNominee }) => {
           className="btn remove"
           onClick={() => {
             removeNominee(movie);
+            dispatchNotification({
+              type: "ERROR",
+              message: "Removed nomination",
+            });
           }}
         >
           Remove
@@ -38,9 +45,13 @@ const Movie = ({ movie, addNominee, nominees, removeNominee }) => {
           disabled={nominees.length >= 5}
           onClick={() => {
             addNominee(movie);
+            dispatchNotification({
+              type: "SUCCESS",
+              message: `Added Nomination: ${nominees.length + 1} out of 5`,
+            });
           }}
         >
-          Nominate
+          {nominees.length >= 5 ? `All 5 Nominated` : `Nominate`}
         </button>
       )}
     </div>

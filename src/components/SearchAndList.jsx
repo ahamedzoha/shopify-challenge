@@ -16,8 +16,8 @@ const SearchAndList = () => {
     <div className="search-list-container">
       <div className="header">
         <div className="text-block">
-          <h2>Nominify</h2>
-          <p>Nominate your favorite movies!</p>
+          <h2>Nominify 🍿</h2>
+          <p>Nominate 5 of your favorite movies!</p>
         </div>
         <div className={`input-wrapper ${isFocused ? `border` : ``}`}>
           <SearchIcon fill={isFocused ? `#000` : `grey`} width="1.6em" />
