@@ -9,8 +9,9 @@ import Movie from "./Movie";
 const SearchAndList = ({ nominees }) => {
   const [searchString, setSearchString] = useState("");
   const [isFocused, setFocus] = useState(false);
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
-  const url = `https://www.omdbapi.com/?apikey=1afda4a3&s=${searchString}&type=movie`;
+  const url = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchString}&type=movie`;
   const { data } = useSWR(url);
 
   return (
