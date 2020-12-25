@@ -1,4 +1,4 @@
-# The Shoppies- Frontend UI Challenge
+# The Shoppies- Frontend UI Challenge 🎉🏆
 
 A front-end web development challenge from Shopify.
 
@@ -28,4 +28,4 @@ The live version of the app is hosted in Netlify [Here...](https://theshoppies-z
 
 - Helpful loading messages.
 - Using Redux persist to save user nominations to local storage if the user leaves the page.
-- More to be added soon!
+- More to be added soon! ☕
