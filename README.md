@@ -26,4 +26,6 @@ The live version of the app is hosted in Netlify [Here...](https://theshoppies-z
    - Nominees can be removed from both the main search result section or the "Your Nominations" section
    - Notification appears on the bottom-left mentioning the movie is removed from nomination. 
 
-- Helpful loading messages
+- Helpful loading messages.
+- Using Redux persist to save user nominations to local storage if the user leaves the page.
+- More to be added soon!
