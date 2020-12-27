@@ -29,3 +29,9 @@ The live version of the app is hosted in Netlify [Here...](https://theshoppies-z
 - Helpful loading messages.
 - Using Redux persist to save user nominations to local storage if the user leaves the page.
 - More to be added soon! ☕
+
+
+
+## Development Notes
+
+The notification component in the project is reusable. Right now, I can send any message with 2 types of notification. "Success" and "Error". If notification is dispatched from any component with the type "Success", a green bar will appear on the bottom of the message and "Red" for "Error". I could have used Redux for notification dispatch as it is for nominations, but I wanted to show my familiarity with React's Context API and hooks such as useReducer, createReducer and etc. Also, I feel using the Context api in this way makes the code feel a bit more portable. 
